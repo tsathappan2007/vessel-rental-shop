@@ -101,22 +101,6 @@ export default function Home() {
   return (
     <div className="space-y-16 -mt-4 -mx-3 sm:-mx-5 pb-10">
 
-      {/* ── ADMIN LOGGED IN BANNER (IF ADMIN) ── */}
-      {isAdmin && (
-        <div className="bg-gradient-to-r from-blue-900 to-indigo-900 text-white px-4 py-3 shadow-md flex items-center justify-between flex-wrap gap-2">
-          <div className="flex items-center gap-2 text-sm">
-            <span className="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse" />
-            <span className="font-medium">You are currently logged in as Administrator.</span>
-          </div>
-          <Link
-            to="/dashboard"
-            className="bg-white text-blue-900 px-4 py-1.5 rounded-lg text-xs font-bold hover:bg-blue-50 transition-all shadow-sm"
-          >
-            Go to Admin Dashboard ➔
-          </Link>
-        </div>
-      )}
-
       {/* ── HERO SECTION ── */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#1e3a5f] via-[#244876] to-[#142841] text-white py-16 px-4 sm:px-8 rounded-b-[2.5rem] shadow-2xl">
         {/* Decorative background glow */}
@@ -196,7 +180,7 @@ export default function Home() {
               <span className="text-2xl">⚡</span>
               <div>
                 <p className="font-bold text-xs sm:text-sm">Instant Booking</p>
-                <p className="text-[10px] text-gray-300">Live Stock Check</p>
+                <p className="text-[10px] text-gray-300">Fast Confirmation</p>
               </div>
             </div>
 
@@ -287,18 +271,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── LIVE INVENTORY & PRICING PREVIEW ── */}
+      {/* ── VESSEL CATALOGUE & COLLECTION ── */}
       <section className="max-w-6xl mx-auto px-4 space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div className="space-y-1">
             <p className="text-xs uppercase font-bold tracking-widest text-primary">
-              நேரடி சரக்கு பட்டியல்
+              பாத்திரங்கள் பட்டியல்
             </p>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-800">
-              Vessel Inventory & Daily Rental Rates
+              Vessel Catalogue & Event Essentials
             </h2>
             <p className="text-sm text-gray-500">
-              Transparent daily rental prices. Book in advance to lock availability for your event date.
+              Explore our extensive collection of cooking vessels, satti, moodi, karandi, boilers, and dining sets.
             </p>
           </div>
 
@@ -306,7 +290,7 @@ export default function Home() {
             to="/bookings/new"
             className="self-start sm:self-auto bg-primary text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl hover:bg-blue-800 transition-all shadow-sm flex items-center gap-1.5"
           >
-            <span>+ Create Full Booking</span>
+            <span>+ Create Booking / முன்பதிவு</span>
             <span>➔</span>
           </Link>
         </div>
@@ -332,31 +316,28 @@ export default function Home() {
             {filteredItems.map((item) => (
               <div
                 key={item._id}
-                className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between hover:border-blue-200 transition-all"
+                className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex flex-col justify-between hover:border-blue-300 hover:shadow-md transition-all group"
               >
-                <div className="space-y-1">
-                  <div className="flex justify-between items-start gap-2">
-                    <h3 className="font-bold text-sm text-gray-800 line-clamp-2">{item.name}</h3>
-                    <span className="text-xs px-2 py-0.5 rounded-full font-bold bg-green-50 text-green-700 border border-green-200 flex-shrink-0">
-                      In Stock
-                    </span>
+                <div className="flex items-start gap-3">
+                  <span className="text-2xl p-2 rounded-xl bg-blue-50 text-primary group-hover:scale-110 transition-transform flex-shrink-0">
+                    🏺
+                  </span>
+                  <div className="space-y-1 min-w-0 flex-1">
+                    <h3 className="font-bold text-sm sm:text-base text-gray-800 line-clamp-2 leading-snug">
+                      {item.name}
+                    </h3>
+                    <p className="text-xs text-gray-400">
+                      Cleaned & Polished Commercial Grade
+                    </p>
                   </div>
-                  <p className="text-xs text-gray-400">Total Units: {item.totalStock}</p>
                 </div>
 
-                <div className="pt-3 border-t border-gray-50 flex items-center justify-between mt-3">
-                  <div>
-                    <span className="text-[10px] text-gray-400 uppercase font-semibold block">Rental Rate</span>
-                    <span className="font-extrabold text-base text-primary">
-                      ₹{item.pricePerUnit || 0}
-                      <span className="text-xs font-normal text-gray-500"> / day</span>
-                    </span>
-                  </div>
+                <div className="pt-4 mt-3 border-t border-gray-50">
                   <Link
                     to="/bookings/new"
-                    className="bg-blue-50 text-primary hover:bg-primary hover:text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-all"
+                    className="w-full block text-center bg-blue-50 hover:bg-primary hover:text-white text-primary text-xs font-bold py-2.5 rounded-xl transition-all shadow-sm"
                   >
-                    Select
+                    Select for Booking / முன்பதிவு ➔
                   </Link>
                 </div>
               </div>
@@ -378,9 +359,9 @@ export default function Home() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { step: '01', title: 'Pick Event Date', desc: 'Select your event date & return date to check live vessel stock availability.' },
+            { step: '01', title: 'Pick Event Date', desc: 'Select your event date and return date for your celebration.' },
             { step: '02', title: 'Choose Vessels', desc: 'Pick exact quantities of Satti, Karandi, Moodi, Boilers, and serving plates.' },
-            { step: '03', title: 'Pay Advance', desc: 'Confirm your booking with instant PDF receipt and automatic shortage warning alerts.' },
+            { step: '03', title: 'Pay Advance', desc: 'Confirm your booking with instant PDF receipt and transparent billing.' },
             { step: '04', title: 'Return & Settle', desc: 'Return vessels post-event with easy unit-by-unit count and clear balance billing.' },
           ].map((s, idx) => (
             <div key={idx} className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm relative overflow-hidden">

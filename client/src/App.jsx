@@ -17,17 +17,15 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 const NAV_LINKS = (t, isAdmin) => {
   if (isAdmin) {
     return [
-      { to: '/dashboard',    label: t('nav_dashboard'),   icon: '📊', end: true  },
+      { to: '/',             label: t('nav_dashboard'),   icon: '📊', end: true  },
       { to: '/inventory',    label: t('nav_inventory'),   icon: '🏺', end: false },
       { to: '/bookings',     label: t('nav_bookings'),    icon: '📋', end: false },
       { to: '/bookings/new', label: t('nav_new_booking'), icon: '➕', end: false },
-      { to: '/',             label: 'Shop Front',         icon: '🏠', end: true  },
     ];
   }
   return [
     { to: '/',             label: 'Home',               icon: '🏠', end: true  },
     { to: '/bookings/new', label: t('nav_new_booking'), icon: '➕', end: false },
-    { to: '/login',        label: 'Admin Login',        icon: '🔑', end: false },
   ];
 };
 
@@ -236,13 +234,16 @@ function AppRoutes() {
 
   return (
     <Routes>
-      {/* Public routes */}
-      <Route path="/" element={<Home />} />
+      {/* Root: Shows Dashboard directly when logged in as admin; Shows Landing Page for public visitors */}
+      <Route path="/" element={isAdmin ? <Dashboard /> : <Home />} />
+
+      {/* Public booking route */}
       <Route path="/bookings/new" element={<NewBooking />} />
-      <Route path="/login" element={!isAdmin ? <Login /> : <Navigate to="/dashboard" replace />} />
+
+      {/* Admin Login: Accessible only if not logged in */}
+      <Route path="/login" element={!isAdmin ? <Login /> : <Navigate to="/" replace />} />
 
       {/* Protected Admin routes */}
-      <Route path="/dashboard" element={isAdmin ? <Dashboard /> : <Navigate to="/login" replace />} />
       <Route path="/inventory" element={isAdmin ? <Inventory /> : <Navigate to="/login" replace />} />
       <Route path="/bookings" element={isAdmin ? <Bookings /> : <Navigate to="/login" replace />} />
       <Route path="/bookings/:id" element={isAdmin ? <BookingDetail /> : <Navigate to="/login" replace />} />
