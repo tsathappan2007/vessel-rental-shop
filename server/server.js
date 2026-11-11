@@ -10,6 +10,7 @@ const inventoryRoutes = require('./routes/inventory.routes');
 const bookingRoutes = require('./routes/booking.routes');
 const dashboardRoutes = require('./routes/dashboard.routes');
 const pdfRoutes = require('./routes/pdf.routes');
+const authRoutes = require('./routes/auth.routes');
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(cors({ origin: process.env.CLIENT_URL || '*' }));
 app.use(express.json());
 app.use('/pdfs', express.static(path.join(__dirname, 'pdfs')));
 
+app.use('/api/auth', authRoutes);
 app.use('/api/inventory', inventoryRoutes);
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/dashboard', dashboardRoutes);

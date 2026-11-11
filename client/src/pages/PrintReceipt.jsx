@@ -28,7 +28,10 @@ export default function PrintReceipt() {
 
   if (!booking) return <div className="text-center py-20">Loading...</div>;
 
-  const balance = (booking.totalAmount || 0) - (booking.advanceAmount || 0);
+  const total = Number(booking.totalAmount || 0);
+  const advance = Number(booking.advanceAmount || 0);
+  const received = Number(booking.receivedAmount || 0);
+  const balance = total - advance - received;
 
   return (
     <div className="max-w-2xl mx-auto p-8 font-sans text-sm">
@@ -142,19 +145,28 @@ export default function PrintReceipt() {
           <div className="flex justify-between">
             <span className="text-gray-600">Total Amount:</span>
             <span className="font-bold">
-              Rs. {Number(booking.totalAmount || 0).toLocaleString('en-IN')}
+              Rs. {total.toLocaleString('en-IN')}
             </span>
           </div>
           <div className="flex justify-between">
             <span className="text-gray-600">Advance Paid:</span>
             <span className="font-bold text-green-600">
-              Rs. {Number(booking.advanceAmount || 0).toLocaleString('en-IN')}
+              Rs. {advance.toLocaleString('en-IN')}
             </span>
           </div>
+          {received > 0 && (
+            <div className="flex justify-between">
+              <span className="text-gray-600">Amount Received (Post-Return):</span>
+              <span className="font-bold text-green-600">
+                Rs. {received.toLocaleString('en-IN')}
+              </span>
+            </div>
+          )}
           <div className="flex justify-between border-t pt-2">
             <span className="font-bold">Balance Due:</span>
             <span className={`font-bold text-lg ${balance > 0 ? 'text-red-600' : 'text-green-600'}`}>
-              Rs. {Number(balance).toLocaleString('en-IN')}
+              Rs. {balance.toLocaleString('en-IN')}
+              {balance <= 0 && <span className="ml-1 text-sm">✅ (Settled)</span>}
             </span>
           </div>
         </div>

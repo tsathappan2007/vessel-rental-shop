@@ -55,17 +55,35 @@ export default function NewBooking() {
 
   const handleCheck = async () => {
     if (!form.eventDate) { toast.warning('Select event date'); return; }
+    if (form.returnDate && form.returnDate < form.eventDate) {
+      toast.warning('Return date cannot be earlier than event date');
+      return;
+    }
     const valid = itemRows.filter((r) => r.itemId && r.quantity > 0);
     if (!valid.length) { toast.warning('Add at least one item'); return; }
     setCheckLoading(true);
-    try { const r = await checkAvailability({ eventDate: form.eventDate, items: valid }); setAvailability(r.data); }
-    catch { toast.error(t('error_occurred')); }
+    try {
+      const r = await checkAvailability({
+        eventDate: form.eventDate,
+        returnDate: form.returnDate || null,
+        items: valid,
+      });
+      setAvailability(r.data);
+    } catch { toast.error(t('error_occurred')); }
     finally { setCheckLoading(false); }
   };
 
   const handleSubmit = async () => {
     if (!form.customerName || !form.phone || !form.eventDate) {
       toast.warning('Fill all required fields'); return;
+    }
+    if (form.returnDate && form.returnDate < form.eventDate) {
+      toast.warning('Return date cannot be earlier than event date');
+      return;
+    }
+    if (advance > grandTotal && grandTotal > 0) {
+      toast.warning('Advance amount cannot exceed total amount');
+      return;
     }
     const valid = itemRows.filter((r) => r.itemId && r.quantity > 0);
     if (!valid.length) { toast.warning('Add at least one item'); return; }

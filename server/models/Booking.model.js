@@ -95,14 +95,48 @@ const bookingSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-bookingSchema.pre('save', async function () {
+const Counter = require('./Counter.model');
+
+bookingSchema.pre('save', async function (next) {
   if (!this.bookingNumber) {
-    const count = await mongoose.model('Booking').countDocuments();
-    this.bookingNumber = `BK${String(count + 1).padStart(5, '0')}`;
+    try {
+      let counter = await Counter.findById('bookingNumber');
+      if (!counter) {
+        // Initialize counter based on highest existing booking number
+        const latestBooking = await mongoose.model('Booking')
+          .findOne({ bookingNumber: { $regex: /^BK\d+$/ } })
+          .sort({ bookingNumber: -1 });
+        let initialSeq = 0;
+        if (latestBooking && latestBooking.bookingNumber) {
+          const num = parseInt(latestBooking.bookingNumber.replace('BK', ''), 10);
+          if (!isNaN(num)) initialSeq = num;
+        }
+        counter = await Counter.findByIdAndUpdate(
+          { _id: 'bookingNumber' },
+          { $set: { seq: initialSeq + 1 } },
+          { new: true, upsert: true }
+        );
+      } else {
+        counter = await Counter.findByIdAndUpdate(
+          { _id: 'bookingNumber' },
+          { $inc: { seq: 1 } },
+          { new: true }
+        );
+      }
+      this.bookingNumber = `BK${String(counter.seq).padStart(5, '0')}`;
+      if (typeof next === 'function') next();
+    } catch (err) {
+      if (typeof next === 'function') return next(err);
+      throw err;
+    }
+  } else {
+    if (typeof next === 'function') next();
   }
 });
 
 bookingSchema.index({ eventDate: 1 });
+bookingSchema.index({ returnDate: 1 });
+bookingSchema.index({ eventDate: 1, returnDate: 1 });
 bookingSchema.index({ status: 1 });
 bookingSchema.index({ bookingNumber: 1 });
 

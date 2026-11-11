@@ -70,34 +70,20 @@ exports.bulkInsert = async (req, res) => {
   }
 };
 
+const { getAvailabilityForRange } = require('./booking.controller');
+
 exports.checkStockForDate = async (req, res) => {
   try {
-    const { date } = req.query;
+    const { date, returnDate } = req.query;
     if (!date) return res.status(400).json({ success: false, message: 'Date is required' });
 
-    const eventDate  = new Date(date);
-    const startOfDay = new Date(eventDate); startOfDay.setHours(0, 0, 0, 0);
-    const endOfDay   = new Date(eventDate); endOfDay.setHours(23, 59, 59, 999);
-
-    const existingBookings = await Booking.find({
-      eventDate: { $gte: startOfDay, $lte: endOfDay },
-      status: { $in: ['Booked', 'Issued', 'Partially Returned'] },
-    });
-
-    const bookedMap = {};
-    for (const booking of existingBookings) {
-      for (const item of booking.items) {
-        const id = item.itemId.toString();
-        bookedMap[id] = (bookedMap[id] || 0) + item.quantity;
-      }
-    }
-
+    const bookedMap = await getAvailabilityForRange(date, returnDate);
     const allItems = await Inventory.find({ isActive: true });
 
     const availability = allItems.map((item) => {
       const id               = item._id.toString();
       const booked           = bookedMap[id] || 0;
-      const available        = item.totalStock - booked;
+      const available        = Math.max(0, item.totalStock - booked);
       const percentAvailable = item.totalStock > 0
         ? (available / item.totalStock) * 100 : 0;
       const isLow            = percentAvailable < item.alertThreshold;
@@ -116,7 +102,7 @@ exports.checkStockForDate = async (req, res) => {
       };
     });
 
-    res.json({ success: true, date, data: availability });
+    res.json({ success: true, date, returnDate, data: availability });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }

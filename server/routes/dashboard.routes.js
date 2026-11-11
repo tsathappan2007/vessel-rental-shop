@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/dashboard.controller');
+const authMiddleware = require('../middleware/auth');
 
-router.get('/stats', controller.getDashboardStats);
-router.get('/utilization', controller.getDateUtilization);
+router.get('/stats', authMiddleware, controller.getDashboardStats);
+router.get('/utilization', authMiddleware, controller.getDateUtilization);
 
 router.get('/shop-info', (req, res) => {
   res.json({

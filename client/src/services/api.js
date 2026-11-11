@@ -2,6 +2,19 @@ import axios from 'axios';
 
 const API = axios.create({ baseURL: import.meta.env.VITE_API_URL || '/api' });
 
+// Automatically attach JWT token to all outgoing requests if present
+API.interceptors.request.use((config) => {
+  const token = localStorage.getItem('admin_token');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+// Auth
+export const loginAdmin = (credentials) => API.post('/auth/login', credentials);
+export const verifyAdminToken = () => API.get('/auth/verify');
+
 // Inventory
 export const getInventory = () => API.get('/inventory');
 export const getInventoryById = (id) => API.get(`/inventory/${id}`);
@@ -9,7 +22,7 @@ export const createInventory = (data) => API.post('/inventory', data);
 export const updateInventory = (id, data) => API.put(`/inventory/${id}`, data);
 export const deleteInventory = (id) => API.delete(`/inventory/${id}`);
 export const bulkInsertInventory = (items) => API.post('/inventory/bulk', { items });
-export const checkStockForDate = (date) => API.get(`/inventory/check-stock?date=${date}`);
+export const checkStockForDate = (date, returnDate) => API.get('/inventory/check-stock', { params: { date, returnDate } });
 
 // Bookings
 export const getBookings = (params) => API.get('/bookings', { params });

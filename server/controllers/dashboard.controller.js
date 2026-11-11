@@ -1,5 +1,6 @@
 const Booking = require('../models/Booking.model');
 const Inventory = require('../models/Inventory.model');
+const { getAvailabilityForRange } = require('./booking.controller');
 
 exports.getDashboardStats = async (req, res) => {
   try {
@@ -7,14 +8,24 @@ exports.getDashboardStats = async (req, res) => {
     const totalInventory = await Inventory.countDocuments({ isActive: true });
     const activeBookings = await Booking.countDocuments({ status: { $in: ['Booked', 'Issued'] } });
 
+    const today = new Date();
+    const bookedMap = await getAvailabilityForRange(today, today);
+
     const inventory = await Inventory.find({ isActive: true });
     const lowStockItems = [];
 
-    // We check low stock based on total stock vs threshold (simplified for dashboard)
+    // Real-time low stock calculation based on today's active reservations
     for (const item of inventory) {
+      const booked = bookedMap[item._id.toString()] || 0;
+      const available = Math.max(0, item.totalStock - booked);
       const threshold = (item.alertThreshold / 100) * item.totalStock;
-      if (item.totalStock <= threshold) {
-        lowStockItems.push({ name: item.name, totalStock: item.totalStock, threshold: item.alertThreshold });
+      if (available <= threshold || item.totalStock === 0) {
+        lowStockItems.push({
+          name: item.name,
+          totalStock: item.totalStock,
+          availableStock: available,
+          threshold: item.alertThreshold,
+        });
       }
     }
 
