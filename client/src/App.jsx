@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, NavLink, useLocation, Navigate } from 're
 import { useTranslation } from 'react-i18next';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Home         from './pages/Home';
 import Dashboard    from './pages/Dashboard';
 import Inventory    from './pages/Inventory';
 import Bookings     from './pages/Bookings';
@@ -16,13 +17,15 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 const NAV_LINKS = (t, isAdmin) => {
   if (isAdmin) {
     return [
-      { to: '/',             label: t('nav_dashboard'),   icon: '📊', end: true  },
+      { to: '/dashboard',    label: t('nav_dashboard'),   icon: '📊', end: true  },
       { to: '/inventory',    label: t('nav_inventory'),   icon: '🏺', end: false },
       { to: '/bookings',     label: t('nav_bookings'),    icon: '📋', end: false },
       { to: '/bookings/new', label: t('nav_new_booking'), icon: '➕', end: false },
+      { to: '/',             label: 'Shop Front',         icon: '🏠', end: true  },
     ];
   }
   return [
+    { to: '/',             label: 'Home',               icon: '🏠', end: true  },
     { to: '/bookings/new', label: t('nav_new_booking'), icon: '➕', end: false },
     { to: '/login',        label: 'Admin Login',        icon: '🔑', end: false },
   ];
@@ -234,18 +237,19 @@ function AppRoutes() {
   return (
     <Routes>
       {/* Public routes */}
+      <Route path="/" element={<Home />} />
       <Route path="/bookings/new" element={<NewBooking />} />
-      <Route path="/login" element={!isAdmin ? <Login /> : <Navigate to="/" replace />} />
+      <Route path="/login" element={!isAdmin ? <Login /> : <Navigate to="/dashboard" replace />} />
 
       {/* Protected Admin routes */}
-      <Route path="/" element={isAdmin ? <Dashboard /> : <Navigate to="/login" replace />} />
+      <Route path="/dashboard" element={isAdmin ? <Dashboard /> : <Navigate to="/login" replace />} />
       <Route path="/inventory" element={isAdmin ? <Inventory /> : <Navigate to="/login" replace />} />
       <Route path="/bookings" element={isAdmin ? <Bookings /> : <Navigate to="/login" replace />} />
       <Route path="/bookings/:id" element={isAdmin ? <BookingDetail /> : <Navigate to="/login" replace />} />
       <Route path="/bookings/:id/print" element={isAdmin ? <PrintReceipt /> : <Navigate to="/login" replace />} />
 
       {/* Fallback */}
-      <Route path="*" element={<Navigate to={isAdmin ? "/" : "/bookings/new"} replace />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }
