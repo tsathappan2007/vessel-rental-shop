@@ -288,15 +288,15 @@ export default function Home() {
       {/* ── TAMIL SLANG & SIGNATURE SPECIALTY SECTION ── */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 space-y-10">
         <div className="text-center space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-400 text-xs font-bold tracking-wider uppercase">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-800 text-xs font-bold tracking-wider uppercase">
             <span>🏺</span>
             <span>பாரம்பரிய & நவீன பாத்திரங்கள்</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
+          <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
             Specialty Vessels in Tamil Tradition
           </h2>
-          <p className="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto">
-            From the authentic <span className="text-amber-300 font-semibold">Satti, Moodi, and Karandi</span> to modern hot buffet boilers — complete cooking and catering infrastructure.
+          <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto">
+            From the authentic <span className="text-amber-700 font-bold">Satti, Moodi, and Karandi</span> to modern hot buffet boilers — complete cooking and catering infrastructure.
           </p>
         </div>
 
@@ -308,7 +308,7 @@ export default function Home() {
               desc: 'Heavy-gauge Biryani Dum Degs (10kg to 100kg), Kedaari, Uruli, Vada Chatti, and large Saadam Anda.',
               icon: Soup,
               tag: 'Cooking Pots',
-              gradient: 'from-amber-500/20 to-orange-500/10 border-amber-500/30'
+              accent: 'border-amber-200'
             },
             {
               title: 'கரண்டி வகைகள்',
@@ -316,7 +316,7 @@ export default function Home() {
               desc: 'Extra long-handled Thuzhavu Karandi, Salli Karandi for deep frying, Sambar Thuppi, and Halwa paddles.',
               icon: UtensilsCrossed,
               tag: 'Stirring & Serving',
-              gradient: 'from-blue-500/20 to-indigo-500/10 border-blue-500/30'
+              accent: 'border-blue-200'
             },
             {
               title: 'மூடி & தட்டுகள்',
@@ -324,7 +324,7 @@ export default function Home() {
               desc: 'Heavy-gauge Dum Moodi for airtight aroma trapping, Sapphire meals plates, serving trays, and snack bowls.',
               icon: Award,
               tag: 'Covers & Dining',
-              gradient: 'from-emerald-500/20 to-teal-500/10 border-emerald-500/30'
+              accent: 'border-emerald-200'
             },
             {
               title: 'டீ பாய்லர் & கொப்பரை',
@@ -332,32 +332,32 @@ export default function Home() {
               desc: 'Commercial Tea/Coffee Boilers (20L to 100L), Idli Kopparai, stainless steel water drums, and chafing dishes.',
               icon: Coffee,
               tag: 'Hot Buffets',
-              gradient: 'from-purple-500/20 to-pink-500/10 border-purple-500/30'
+              accent: 'border-purple-200'
             }
           ].map((item, idx) => {
             const Icon = item.icon;
             return (
               <div
                 key={idx}
-                className={`group p-6 rounded-3xl bg-slate-900/80 border ${item.gradient} hover:border-amber-400/50 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl flex flex-col justify-between`}
+                className="group p-6 rounded-3xl bg-white border border-slate-200/90 hover:border-amber-400 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between"
               >
                 <div className="space-y-4">
-                  <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-amber-400 group-hover:scale-110 group-hover:bg-amber-400 group-hover:text-slate-950 transition-all duration-300">
+                  <div className="w-14 h-14 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-600 group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">
                     <Icon className="w-7 h-7" />
                   </div>
                   <div>
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-amber-400/90">
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-amber-700">
                       {item.tag}
                     </span>
-                    <h3 className="text-xl font-bold text-white group-hover:text-amber-300 transition-colors">
+                    <h3 className="text-xl font-bold text-slate-900 group-hover:text-amber-700 transition-colors">
                       {item.title}
                     </h3>
-                    <p className="text-xs text-slate-400 font-medium">{item.english}</p>
+                    <p className="text-xs text-slate-500 font-medium">{item.english}</p>
                   </div>
-                  <p className="text-xs text-slate-300 leading-relaxed">{item.desc}</p>
+                  <p className="text-xs text-slate-600 leading-relaxed">{item.desc}</p>
                 </div>
 
-                <div className="pt-4 mt-4 border-t border-white/5 flex items-center justify-between text-xs font-bold text-amber-400">
+                <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-amber-700">
                   <span>Available for Rent</span>
                   <span className="group-hover:translate-x-1 transition-transform">➔</span>
                 </div>
@@ -371,21 +371,21 @@ export default function Home() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 space-y-10">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 border border-blue-200 text-blue-800 text-xs font-bold uppercase tracking-wider">
               <span>🎉</span>
               <span>சுபகாரிய நிகழ்வுகள்</span>
             </div>
-            <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
+            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
               Tailored for Every Occasion
             </h2>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-slate-600">
               We cater complete vessel infrastructure for intimate ceremonies to mega gatherings.
             </p>
           </div>
 
           <Link
             to="/bookings/new"
-            className="self-start sm:self-auto px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-white text-xs font-bold transition-all flex items-center gap-2"
+            className="self-start sm:self-auto px-6 py-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 text-xs font-bold shadow-sm transition-all flex items-center gap-2"
           >
             <span>+ Book for Your Event</span>
             <ArrowRight className="w-4 h-4" />
@@ -396,7 +396,7 @@ export default function Home() {
           {OCCASIONS.map((occ, idx) => (
             <div
               key={idx}
-              className="group relative rounded-3xl overflow-hidden bg-slate-900 border border-white/10 hover:border-amber-400/50 shadow-xl transition-all duration-300 flex flex-col justify-between"
+              className="group relative rounded-3xl overflow-hidden bg-white border border-slate-200/90 hover:border-amber-400 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1"
             >
               {/* Image with zoom effect */}
               <div className="relative h-48 overflow-hidden">
@@ -405,8 +405,8 @@ export default function Home() {
                   alt={occ.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
-                <span className="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-slate-950/80 text-amber-300 border border-white/10 backdrop-blur-md">
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-slate-950/20 to-transparent" />
+                <span className="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-slate-900/80 text-amber-300 border border-white/10 backdrop-blur-md">
                   {occ.highlight}
                 </span>
               </div>
@@ -414,17 +414,17 @@ export default function Home() {
               {/* Card Details */}
               <div className="p-5 space-y-3 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 className="text-lg font-bold text-white group-hover:text-amber-300 transition-colors">
+                  <h3 className="text-lg font-bold text-slate-900 group-hover:text-amber-700 transition-colors">
                     {occ.title}
                   </h3>
-                  <p className="text-xs text-amber-400 font-semibold mb-2">{occ.tamil}</p>
-                  <p className="text-xs text-slate-300 leading-relaxed">{occ.desc}</p>
+                  <p className="text-xs text-amber-700 font-semibold mb-2">{occ.tamil}</p>
+                  <p className="text-xs text-slate-600 leading-relaxed">{occ.desc}</p>
                 </div>
 
-                <div className="pt-3 border-t border-white/10">
+                <div className="pt-3 border-t border-slate-100">
                   <Link
                     to="/bookings/new"
-                    className="w-full py-2.5 rounded-xl bg-white/5 hover:bg-amber-400 hover:text-slate-950 text-slate-200 text-xs font-bold transition-all flex items-center justify-center gap-1.5 group-hover:shadow-lg"
+                    className="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-amber-500 hover:text-white text-slate-800 text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm"
                   >
                     <span>Reserve Event Set</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -438,15 +438,15 @@ export default function Home() {
 
       {/* ── VESSEL CATALOGUE & SEARCH SECTION (NO PRICE, NO STOCK) ── */}
       <section id="catalogue" className="max-w-7xl mx-auto px-4 sm:px-6 space-y-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 p-8 rounded-3xl bg-gradient-to-br from-slate-900 to-slate-950 border border-white/10 shadow-2xl">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 p-8 rounded-3xl bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100/60 border border-amber-200/80 shadow-md">
           <div className="space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
+            <span className="text-xs font-bold uppercase tracking-wider text-amber-800">
               பாத்திரங்கள் பட்டியல்
             </span>
-            <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
+            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
               Vessel Catalogue & Event Essentials
             </h2>
-            <p className="text-sm text-slate-400 max-w-xl">
+            <p className="text-sm text-slate-600 max-w-xl">
               Browse our verified, food-grade polished inventory available for instant online reservation.
             </p>
           </div>
@@ -459,16 +459,16 @@ export default function Home() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search Satti, Karandi, Boiler, Moodi..."
-                className="w-full pl-10 pr-4 py-3 rounded-2xl bg-white/5 border border-white/15 text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all backdrop-blur-md"
+                className="w-full pl-10 pr-4 py-3 rounded-2xl bg-white border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 shadow-sm transition-all"
               />
             </div>
           </div>
         </div>
 
         {filteredItems.length === 0 ? (
-          <div className="bg-slate-900/60 rounded-3xl p-12 text-center text-slate-400 border border-white/10 backdrop-blur-xl">
-            <ChefHat className="w-12 h-12 text-slate-600 mx-auto mb-3" />
-            <p className="text-base font-semibold text-slate-300">No vessels found matching your search</p>
+          <div className="bg-white rounded-3xl p-12 text-center text-slate-500 border border-slate-200 shadow-sm">
+            <ChefHat className="w-12 h-12 text-slate-400 mx-auto mb-3" />
+            <p className="text-base font-semibold text-slate-800">No vessels found matching your search</p>
             <p className="text-xs text-slate-500 mt-1">Try searching for Satti, Karandi, Boiler or Plates</p>
           </div>
         ) : (
@@ -476,33 +476,33 @@ export default function Home() {
             {filteredItems.map((item) => (
               <div
                 key={item._id}
-                className="group bg-slate-900/80 hover:bg-slate-900 border border-white/10 hover:border-amber-400/40 rounded-3xl p-5 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1"
+                className="group bg-white hover:bg-amber-50/20 border border-slate-200 hover:border-amber-400/80 rounded-3xl p-5 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1"
               >
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
-                    <div className="w-12 h-12 rounded-2xl bg-amber-400/10 border border-amber-400/20 text-amber-400 flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:bg-amber-400 group-hover:text-slate-950 transition-all duration-300">
+                    <div className="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-200 text-amber-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">
                       <Soup className="w-6 h-6" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <h3 className="font-bold text-base text-white group-hover:text-amber-300 transition-colors line-clamp-2">
+                      <h3 className="font-bold text-base text-slate-900 group-hover:text-amber-700 transition-colors line-clamp-2">
                         {item.name}
                       </h3>
-                      <p className="text-[11px] text-slate-400 font-medium mt-0.5">
+                      <p className="text-[11px] text-slate-500 font-medium mt-0.5">
                         Commercial Event Grade
                       </p>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-2 pt-1 text-[11px] text-emerald-400 font-semibold">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
+                  <div className="flex items-center gap-2 pt-1 text-[11px] text-emerald-700 font-semibold">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                     <span>Hygienically Sanitized & Polished</span>
                   </div>
                 </div>
 
-                <div className="pt-4 mt-4 border-t border-white/10">
+                <div className="pt-4 mt-4 border-t border-slate-100">
                   <Link
                     to="/bookings/new"
-                    className="w-full py-2.5 rounded-xl bg-white/5 hover:bg-amber-400 hover:text-slate-950 text-slate-200 text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm"
+                    className="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-md shadow-amber-500/20"
                   >
                     <span>Select for Booking / முன்பதிவு</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -517,13 +517,13 @@ export default function Home() {
       {/* ── 4-STEP BOOKING WORKFLOW ── */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 space-y-10">
         <div className="text-center space-y-2">
-          <span className="text-xs uppercase font-bold tracking-widest text-amber-400">
+          <span className="text-xs uppercase font-bold tracking-widest text-amber-800">
             எளிய 4 படிகள்
           </span>
-          <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
+          <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
             How Rental Booking Works
           </h2>
-          <p className="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto">
+          <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto">
             Hassle-free reservations with complete transparency from booking to return.
           </p>
         </div>
@@ -557,16 +557,16 @@ export default function Home() {
           ].map((s, idx) => (
             <div
               key={idx}
-              className="relative p-6 rounded-3xl bg-slate-900/80 border border-white/10 hover:border-amber-400/40 backdrop-blur-xl transition-all duration-300 group overflow-hidden"
+              className="relative p-6 rounded-3xl bg-white border border-slate-200/90 hover:border-amber-400 shadow-md hover:shadow-xl transition-all duration-300 group overflow-hidden hover:-translate-y-1"
             >
-              <div className="text-5xl font-black text-white/5 absolute top-3 right-4 select-none group-hover:text-amber-400/10 transition-colors">
+              <div className="text-5xl font-black text-slate-100 absolute top-3 right-4 select-none group-hover:text-amber-100/50 transition-colors">
                 {s.step}
               </div>
-              <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-amber-400/10 text-amber-400 border border-amber-400/20 mb-3">
+              <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-800 border border-amber-200 mb-3">
                 Step {s.step} • {s.tamil}
               </span>
-              <h3 className="text-lg font-bold text-white mb-2">{s.title}</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">{s.desc}</p>
+              <h3 className="text-lg font-bold text-slate-900 mb-2">{s.title}</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">{s.desc}</p>
             </div>
           ))}
         </div>
@@ -603,7 +603,7 @@ export default function Home() {
 
             <Link
               to="/bookings/new"
-              className="px-6 py-4 rounded-2xl bg-white hover:bg-slate-100 text-slate-950 font-black text-sm shadow-xl active:scale-95 transition-all text-center flex items-center justify-center gap-2"
+              className="px-6 py-4 rounded-2xl bg-white hover:bg-slate-50 text-slate-950 font-black text-sm shadow-xl active:scale-95 transition-all text-center flex items-center justify-center gap-2"
             >
               <span>Book Online ➔</span>
             </Link>
@@ -612,45 +612,45 @@ export default function Home() {
       </section>
 
       {/* ── MODERN FOOTER (WITH EXCLUSIVE ADMIN LOGIN) ── */}
-      <footer className="border-t border-white/10 bg-slate-950 pt-16 pb-12 px-4 sm:px-8">
+      <footer className="border-t border-slate-200 bg-slate-100 pt-16 pb-12 px-4 sm:px-8">
         <div className="max-w-7xl mx-auto space-y-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
             {/* Col 1 */}
             <div className="space-y-4 md:col-span-1">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-amber-400 flex items-center justify-center text-slate-950 shadow-md">
-                  <ChefHat className="w-5 h-5" />
+                <div className="w-10 h-10 rounded-2xl bg-amber-500 flex items-center justify-center text-white shadow-md">
+                  <ChefHat className="w-5 h-5 text-white" />
                 </div>
-                <span className="font-black text-lg text-white">{shop.name}</span>
+                <span className="font-black text-lg text-slate-900">{shop.name}</span>
               </div>
-              <p className="text-xs text-slate-400 leading-relaxed">
+              <p className="text-xs text-slate-600 leading-relaxed">
                 Devakottai’s premier event and wedding vessels rental center. Supplying heavy-gauge Satti, Moodi, Karandi, Boilers, and dining plate sets.
               </p>
-              <p className="text-xs text-amber-400/90 font-medium">
+              <p className="text-xs text-amber-800 font-semibold">
                 சுபகாரியங்களுக்கு தேவையான அனைத்து வாடகை பாத்திரங்களும் சிறந்த முறையில் கிடைக்கும்.
               </p>
             </div>
 
             {/* Col 2 */}
             <div className="space-y-3">
-              <h4 className="text-sm font-bold text-white uppercase tracking-wider">Quick Navigation</h4>
-              <ul className="space-y-2.5 text-xs text-slate-400">
+              <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider">Quick Navigation</h4>
+              <ul className="space-y-2.5 text-xs text-slate-600">
                 <li>
-                  <Link to="/" className="hover:text-amber-400 transition-colors">Home / முகப்பு</Link>
+                  <Link to="/" className="hover:text-amber-600 transition-colors">Home / முகப்பு</Link>
                 </li>
                 <li>
-                  <Link to="/bookings/new" className="hover:text-amber-400 transition-colors">Reserve Vessels / முன்பதிவு</Link>
+                  <Link to="/bookings/new" className="hover:text-amber-600 transition-colors">Reserve Vessels / முன்பதிவு</Link>
                 </li>
                 <li>
-                  <a href="#catalogue" className="hover:text-amber-400 transition-colors">Vessel Catalogue</a>
+                  <a href="#catalogue" className="hover:text-amber-600 transition-colors">Vessel Catalogue</a>
                 </li>
               </ul>
             </div>
 
             {/* Col 3 */}
             <div className="space-y-3">
-              <h4 className="text-sm font-bold text-white uppercase tracking-wider">Occasions</h4>
-              <ul className="space-y-2.5 text-xs text-slate-400">
+              <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider">Occasions</h4>
+              <ul className="space-y-2.5 text-xs text-slate-600">
                 <li>• Weddings & Receptions (திருமணம்)</li>
                 <li>• Temple Festivals (கோவில் திருவிழா)</li>
                 <li>• Annadhanam Feasts (அன்னதானம்)</li>
@@ -660,24 +660,24 @@ export default function Home() {
 
             {/* Col 4 */}
             <div className="space-y-3">
-              <h4 className="text-sm font-bold text-white uppercase tracking-wider">Store Location</h4>
-              <p className="text-xs text-slate-400 leading-relaxed">{shop.address}</p>
-              <p className="text-xs text-slate-300 font-semibold">Phone: {shop.phone}</p>
+              <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider">Store Location</h4>
+              <p className="text-xs text-slate-600 leading-relaxed">{shop.address}</p>
+              <p className="text-xs text-slate-800 font-semibold">Phone: {shop.phone}</p>
               <p className="text-[11px] text-slate-500">Hours: Mon-Sun: 7:00 AM - 9:30 PM</p>
             </div>
           </div>
 
           {/* Bottom Bar with Copyright & ADMIN LOGIN EXCLUSIVELY HERE */}
-          <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+          <div className="border-t border-slate-200 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
             <p>© {new Date().getFullYear()} {shop.name}. All rights reserved.</p>
 
             {/* ── ADMIN LOGIN (EXCLUSIVE TO FOOTER) ── */}
             <div>
               <Link
                 to="/login"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-amber-300 border border-white/10 hover:border-amber-400/40 text-xs font-bold transition-all shadow-md group"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white hover:bg-slate-50 text-slate-700 hover:text-amber-700 border border-slate-300 hover:border-amber-400 text-xs font-bold transition-all shadow-sm group"
               >
-                <Lock className="w-3.5 h-3.5 text-amber-400 group-hover:scale-110 transition-transform" />
+                <Lock className="w-3.5 h-3.5 text-amber-600 group-hover:scale-110 transition-transform" />
                 <span>Admin Login / நிர்வாகி உள்நுழைவு</span>
               </Link>
             </div>
