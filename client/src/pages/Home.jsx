@@ -20,7 +20,8 @@ import {
   Search,
   Soup,
   Coffee,
-  Check
+  Check,
+  ChefHat
 } from 'lucide-react';
 import { getInventory, getShopInfo } from '../services/api';
 
